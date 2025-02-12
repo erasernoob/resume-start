@@ -27,7 +27,7 @@ export async function getConfig(
   }
 
   return fetchResume(lang, branch, user).catch(() => {
-    message.warn(intl.formatMessage({ id: '从模板中获取' }), 1);
+    // message.warn(intl.formatMessage({ id: '从模板中获取' }), 1);
     return _.omit(
       customAssign({}, RESUME_INFO, _.get(RESUME_INFO, ['locales', lang])),
       ['locales']

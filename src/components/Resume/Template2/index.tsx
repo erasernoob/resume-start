@@ -161,7 +161,8 @@ export const Template2: React.FC<Props> = props => {
           )}
         </div>
         {/* </Wrapper> */}
-        {/* 教育背景 */}
+        {/* 教育经历 */}
+
         {educationList?.length ? (
           <Wrapper
             // title=<FormattedMessage id="教育背景" />
@@ -176,6 +177,17 @@ export const Template2: React.FC<Props> = props => {
                   <div>
                     <span>
                       <b>{education.school}</b>
+                      <Tag
+                        style={{
+                          height: '100%',
+                          marginBottom: '',
+                          marginLeft: '10px',
+                          borderRadius: '5px',
+                        }}
+                        color={theme.tagColor}
+                      >
+                        {education.school_level}
+                      </Tag>
                       <span style={{ marginLeft: '8px' }}>
                         {education.major && <span>{education.major}</span>}
                         {education.academic_degree && (
@@ -190,7 +202,7 @@ export const Template2: React.FC<Props> = props => {
                     </span>
                     <span className="sub-info" style={{ float: 'right' }}>
                       {start}
-                      {end ? ` ~ ${end}` : ' 至今'}
+                      {end ? ` - ${end}` : ' 至今'}
                     </span>
                   </div>
                 </div>
@@ -223,7 +235,8 @@ export const Template2: React.FC<Props> = props => {
             })}
           </Wrapper>
         ) : null}
-        <Wrapper
+        {/* 自我介绍 */}
+        {/* <Wrapper
           title={<FormattedMessage id="自我介绍" />}
           className="section section-aboutme"
           color={theme.color}
@@ -231,7 +244,7 @@ export const Template2: React.FC<Props> = props => {
           {aboutme.map((d, idx) => (
             <div key={`${idx}`}>{d}</div>
           ))}
-        </Wrapper>
+        </Wrapper> */}
         {/* 专业技能 */}
         {skillList?.length ? (
           <Wrapper
@@ -263,30 +276,6 @@ export const Template2: React.FC<Props> = props => {
             })}
           </Wrapper>
         ) : null}
-        {/* {awardList?.length ? (
-          <Wrapper
-            // title="更多信息"
-            title={titleNameMap.awardList}
-            className="section section-award"
-            color={theme.color}
-          >
-            {awardList.map((award, idx) => {
-              return (
-                <div key={idx.toString()}>
-                  <TrophyFilled
-                    style={{ color: '#ffc107', marginRight: '8px' }}
-                  />
-                  <span className="info-name">{award.award_info}</span>
-                  {award.award_time && (
-                    <span className="sub-info award-time">
-                      ({award.award_time})
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </Wrapper>
-        ) : null} */}
       </div>
       <div className="main-info">
         {workExpList?.length ? (
@@ -361,6 +350,28 @@ export const Template2: React.FC<Props> = props => {
                 ) : null
               )}
             </div>
+          </Wrapper>
+        ) : null}
+        {/* 个人优势等 */}
+        {awardList?.length ? (
+          <Wrapper
+            // title="更多信息"
+            title={titleNameMap.awardList}
+            className="section section-award"
+            color={theme.color}
+          >
+            {awardList.map((award, idx) => {
+              return (
+                <div key={idx.toString()}>
+                  <span className="info-name">{award.award_info}</span>
+                  {award.award_time && (
+                    <span className="sub-info award-time">
+                      ({award.award_time})
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </Wrapper>
         ) : null}
       </div>

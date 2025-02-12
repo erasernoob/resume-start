@@ -35,7 +35,7 @@ export const useModeSwitcher = ({
     window.location.href = `${pathname}?${search}${hash}`;
   };
 
-  const canPreview = !query.user;
+  const canPreview = query.user;
 
   return [
     <div className={cx('mode-switcher', className)}>

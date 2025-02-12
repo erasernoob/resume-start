@@ -45,6 +45,7 @@ export type ResumeConfig = {
   educationList?: Array<{
     edu_time: [string | undefined, string | number];
     school: string;
+    school_level: string;
     major?: string;
     /** 学历 */
     academic_degree?: string;
@@ -95,6 +96,8 @@ export type ResumeConfig = {
     work_desc?: string;
     visit_link?: string;
   }>;
+
+  theme: ThemeConfig;
 
   /** 自我介绍 */
   aboutme?: {

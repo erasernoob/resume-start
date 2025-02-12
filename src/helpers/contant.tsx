@@ -37,7 +37,7 @@ export const MODULES = ({
       key: 'profile',
     },
     {
-      name: intl.formatMessage({ id: '教育背景' }),
+      name: intl.formatMessage({ id: '教育经历' }),
       icon: <ScheduleTwoTone />,
       key: 'educationList',
     },

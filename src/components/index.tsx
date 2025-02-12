@@ -17,7 +17,9 @@ import { getConfig, saveToLocalStorage } from '@/helpers/store-to-local';
 import { fetchResume } from '@/helpers/fetch-resume';
 import { Drawer } from './Drawer';
 import { Resume } from './Resume';
+import { RESUME_INFO } from '@/data/resume';
 import type { ResumeConfig, ThemeConfig } from './types';
+import html2pdf from 'html2pdf.js';
 
 import './index.less';
 
@@ -34,10 +36,7 @@ export const Page: React.FC = () => {
   const query = getSearchObj();
   const [config, setConfig] = useState<ResumeConfig>();
   const [loading, updateLoading] = useState<boolean>(true);
-  const [theme, setTheme] = useState<ThemeConfig>({
-    color: '#2f5785',
-    tagColor: '#8bc34a',
-  });
+  const [theme, setTheme] = useState<ThemeConfig>(RESUME_INFO.theme);
 
   useEffect(() => {
     const {
@@ -228,6 +227,19 @@ export const Page: React.FC = () => {
       console.log('sharing url', url.toString());
       copyToClipboard(url.toString());
     });
+  };
+
+  const downloadPdf = () => {
+    html2pdf()
+      .set({
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      })
+      .from(document.body)
+      .save();
   };
 
   return (

@@ -3,24 +3,26 @@ import type { ResumeConfig } from '@/components/types';
 /** 初始化常量 */
 export const RESUME_INFO: ResumeConfig = {
   avatar: {
-    src: undefined,
+    src:
+      'https://img.88icon.com/download/jpg/201912/9ae20a3b5f869ac2e33c019ace85b196.jpg!ys',
     hidden: false,
   },
   profile: {
-    name: '姓名',
-    email: '736****86@qq.com',
-    mobile: '156********',
-    github: 'https://github.com/visiky',
-    zhihu: 'https://zhihu.com/people/visiky',
-    workExpYear: '',
-    workPlace: '浙江杭州',
-    positionTitle: '前端工程师',
+    name: 'erasernoob',
+    positionTitle: '后端工程师',
+    email: 'erasernoobx@outlook.com',
+    mobile: '133-5049-1143',
+    // github: 'https://github.com/visiky',
+    // zhihu: 'https://zhihu.com/people/visiky',
+    // workExpYear: '',
+    // workPlace: '浙江杭州',
   },
   educationList: [
     {
-      edu_time: ['2014.09.01', '2018.06.30'],
-      school: '华南理工大学',
-      major: '网络工程',
+      edu_time: ['2023.09', '2027.06'],
+      school: '西南石油大学',
+      school_level: '双一流',
+      major: '软件工程',
       academic_degree: '本科',
     },
   ],
@@ -29,19 +31,6 @@ export const RESUME_INFO: ResumeConfig = {
       award_info: '英语 CET6',
       award_time: '2015',
     },
-    {
-      award_info: '蚂蚁近卫军 卓越个人奖',
-      award_time: '2018.09',
-    },
-    {
-      award_info: '前端练习生 可视化讲师',
-      award_time: '2020.10',
-    },
-    {
-      award_info:
-        '前端早早聊 分享 “如何构思和开发开箱即用的可视化图表库 G2Plot”',
-      award_time: '2021.07',
-    },
   ],
   workExpList: [
     {
@@ -49,20 +38,6 @@ export const RESUME_INFO: ResumeConfig = {
       department_name: '体验技术部',
       work_time: ['2018.06', null],
       work_desc: `1. 担任蚂蚁高管决策和管理协同产品 “数据作战室” 的前端负责人\r\n2. 负责蚂蚁敏捷 BI 产品 “DeepInsight” 的可视分析模块产品能力建设\n3. 数据可视化 AntV 团队核心成员，负责 G2、G2Plot 开源技术的建设`,
-    },
-    {
-      company_name: '蚂蚁金服',
-      department_name: '大数据部',
-      work_time: ['2017.06', '2017.12'],
-      work_desc:
-        '前端实习生。使用 React 参与开发多类产品：数据研发平台、数据决策平台、数据分析平台的研发工作，同时也参与大型 BI 产品的重构工作，有良好的编码习惯。',
-    },
-    {
-      company_name: '数沃信息科技有限公司',
-      department_name: '',
-      work_time: ['2017.03', '2017.05'],
-      work_desc:
-        '前端实习生。使用 Vue 来实现平台功能和逻辑，再用 ECharts 来对数据挖掘分析后的可视化结果进行展示',
     },
   ],
   skillList: [
@@ -136,6 +111,11 @@ export const RESUME_INFO: ResumeConfig = {
     自驱型前端工程师，三年多大型复杂产品开发经验，负责蚂蚁集团 BI 产品 DeepInsight 的可视化建设，参与了从图表库到 BI 产品力的一体化建设，对商业智能领域的数据可视化建设有较为丰富的经验。
     参与 AntV 团队开源项目 G2、G2Plot 的研发，目前是 G2Plot 的主要负责人。
     `,
+  },
+  // add the theme config
+  theme: {
+    color: '#2f5785',
+    tagColor: '#747497',
   },
   // 国际化
   locales: {
