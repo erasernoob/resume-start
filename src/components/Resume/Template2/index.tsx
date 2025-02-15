@@ -75,7 +75,7 @@ export const Template2: React.FC<Props> = props => {
 
   return (
     <div className="template2-resume resume-content">
-      <div className="basic-info">
+      <div className="basic-info main-info">
         <div className="profile">
           <div className="profile-info">
             {profile?.name && <div className="name">{profile.name}</div>}
@@ -162,7 +162,6 @@ export const Template2: React.FC<Props> = props => {
         </div>
         {/* </Wrapper> */}
         {/* 教育经历 */}
-
         {educationList?.length ? (
           <Wrapper
             // title=<FormattedMessage id="教育背景" />
@@ -177,17 +176,6 @@ export const Template2: React.FC<Props> = props => {
                   <div>
                     <span>
                       <b>{education.school}</b>
-                      <Tag
-                        style={{
-                          height: '100%',
-                          marginBottom: '',
-                          marginLeft: '10px',
-                          borderRadius: '5px',
-                        }}
-                        color={theme.tagColor}
-                      >
-                        {education.school_level}
-                      </Tag>
                       <span style={{ marginLeft: '8px' }}>
                         {education.major && <span>{education.major}</span>}
                         {education.academic_degree && (
@@ -204,6 +192,24 @@ export const Template2: React.FC<Props> = props => {
                       {start}
                       {end ? ` - ${end}` : ' 至今'}
                     </span>
+                    <div style={{ marginLeft: '0px', paddingLeft: '0px' }}>
+                      <ul
+                        className="md-ul"
+                        style={{
+                          marginTop: '5px',
+                          padding: '0px',
+                          paddingLeft: '14px',
+                        }}
+                      >
+                        <li>本科生实验室大数据团队负责人</li>
+                        <li>
+                          英语等级：<b>CET-6</b>（587）
+                        </li>
+                        <li>
+                          <b>专业课程</b>： {education.major_lesson}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               );
@@ -245,39 +251,6 @@ export const Template2: React.FC<Props> = props => {
             <div key={`${idx}`}>{d}</div>
           ))}
         </Wrapper> */}
-        {/* 专业技能 */}
-        {skillList?.length ? (
-          <Wrapper
-            // title=<FormattedMessage id="专业技能" />
-            title={titleNameMap.skillList}
-            className="section section-skill"
-            color={theme.color}
-          >
-            {skillList.map((skill, idx) => {
-              const skills = _.split(skill.skill_desc, '\n').join('；');
-              return skills ? (
-                <div className="skill-item" key={idx.toString()}>
-                  <span>
-                    <CheckCircleFilled
-                      style={{ color: '#ffc107', marginRight: '8px' }}
-                    />
-                    {skills}
-                  </span>
-                  {skill.skill_level && (
-                    <Rate
-                      allowHalf
-                      disabled
-                      value={skill.skill_level / 20}
-                      className="skill-rate"
-                    />
-                  )}
-                </div>
-              ) : null;
-            })}
-          </Wrapper>
-        ) : null}
-      </div>
-      <div className="main-info">
         {workExpList?.length ? (
           <Wrapper
             className="experience"
@@ -291,6 +264,11 @@ export const Template2: React.FC<Props> = props => {
                   typeof work.work_time === 'string'
                     ? `${work.work_time || ''}`.split(',')
                     : work.work_time;
+                const workContentList = work
+                  ? work.work_list.map((li, idx) => {
+                      return <li key={idx}>{li}</li>;
+                    })
+                  : null;
                 return work ? (
                   <div className="section-item" key={idx.toString()}>
                     <div className="section-info">
@@ -304,12 +282,26 @@ export const Template2: React.FC<Props> = props => {
                       </span>
                     </div>
                     <div className="work-description">{work.work_desc}</div>
+                    {/* 工作内容列表 */}
+                    <div className="work-content-list">
+                      <ul
+                        className="md-ul"
+                        style={{
+                          marginTop: '5px',
+                          padding: '0px',
+                          paddingLeft: '14px',
+                        }}
+                      >
+                        <li>{workContentList}</li>
+                      </ul>
+                    </div>
                   </div>
                 ) : null;
               })}
             </div>
           </Wrapper>
         ) : null}
+
         {projectList?.length ? (
           <Wrapper
             className="skill"
@@ -374,7 +366,35 @@ export const Template2: React.FC<Props> = props => {
             })}
           </Wrapper>
         ) : null}
+        {skillList?.length ? (
+          <Wrapper
+            // title=<FormattedMessage id="专业技能" />
+            title={titleNameMap.skillList}
+            className="section section-skill"
+            color={theme.color}
+          >
+            <ul
+              className="md-ul"
+              style={{ marginTop: '5px', padding: '0px', paddingLeft: '14px' }}
+            >
+              {skillList.map((skill, idx) => {
+                const skills = _.split(skill.skill_desc, '\n').join('；');
+                return skills ? (
+                  <li>
+                    <div className="skill-item" key={idx.toString()}>
+                      <span>
+                        {/* <b>{skill.skill_name}：</b> */}
+                        {skills}
+                      </span>
+                    </div>
+                  </li>
+                ) : null;
+              })}
+            </ul>
+          </Wrapper>
+        ) : null}
       </div>
+      <div className="main-info"></div>
     </div>
   );
 };

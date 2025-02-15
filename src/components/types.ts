@@ -49,6 +49,7 @@ export type ResumeConfig = {
     major?: string;
     /** 学历 */
     academic_degree?: string;
+    major_lesson?: string;
   }>;
 
   /** 工作经历 */
@@ -57,6 +58,8 @@ export type ResumeConfig = {
     department_name: string;
     work_time?: [string | undefined, string | number];
     work_desc: string;
+    // 工作内容列表
+    work_list?: Array<string>;
   }>;
 
   /** 项目经历 */
@@ -71,6 +74,8 @@ export type ResumeConfig = {
     project_content?: string;
     /** 项目时间 */
     project_time?: string;
+    // 项目内容列表
+    project_content_list?: Array<string>;
   }>;
 
   /** 个人技能 */
