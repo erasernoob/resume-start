@@ -29,7 +29,6 @@ const Page = () => {
       </Helmet>
       <Header />
       <Content />
-      <Footer />
     </IntlProvider>
   );
 };

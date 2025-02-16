@@ -20,6 +20,8 @@ node_modules
 # webstorm editor
 .idea
 
+src/data/resume.ts
+
 # gatsby files
 .cache/
 public
