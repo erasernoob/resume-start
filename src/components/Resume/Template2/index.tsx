@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import { Rate, Tag } from 'antd';
 import {
   PhoneFilled,
@@ -12,7 +13,7 @@ import {
   CrownFilled,
 } from '@ant-design/icons';
 import cx from 'classnames';
-import _ from 'lodash-es';
+import _, { size } from 'lodash-es';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getDefaultTitleNameMap } from '@/data/constant';
 import { Avatar } from '../../Avatar';
@@ -201,10 +202,10 @@ export const Template2: React.FC<Props> = props => {
                           paddingLeft: '14px',
                         }}
                       >
-                        <li>本科生实验室大数据团队负责人</li>
                         <li>
-                          英语等级：<b>CET-6</b>（587）
+                          <strong>英语等级</strong>：<b>CET-6</b>
                         </li>
+                        <li>本科生实验室大数据团队负责人</li>
                         <li>
                           <b>专业课程</b>： {education.major_lesson}
                         </li>
@@ -235,7 +236,9 @@ export const Template2: React.FC<Props> = props => {
                       <FormattedMessage id="访问链接" />
                     </a>
                   </div>
-                  {work.work_desc && <div>{work.work_desc}</div>}
+                  {work.work_desc && (
+                    <div className="markdown-item">{work.work_desc}</div>
+                  )}
                 </div>
               );
             })}
@@ -266,7 +269,11 @@ export const Template2: React.FC<Props> = props => {
                     : work.work_time;
                 const workContentList = work
                   ? work.work_list.map((li, idx) => {
-                      return <li key={idx}>{li}</li>;
+                      return (
+                        <li key={idx} className="markdown-item">
+                          <ReactMarkdown>{li}</ReactMarkdown>
+                        </li>
+                      );
                     })
                   : null;
                 return work ? (
@@ -281,7 +288,9 @@ export const Template2: React.FC<Props> = props => {
                         {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
                       </span>
                     </div>
-                    <div className="work-description">{work.work_desc}</div>
+                    <div className="work-description markdown-item">
+                      <ReactMarkdown>{work.work_desc}</ReactMarkdown>
+                    </div>
                     {/* 工作内容列表 */}
                     <div className="work-content-list">
                       <ul
@@ -292,7 +301,7 @@ export const Template2: React.FC<Props> = props => {
                           paddingLeft: '14px',
                         }}
                       >
-                        <li>{workContentList}</li>
+                        {workContentList}
                       </ul>
                     </div>
                   </div>
@@ -310,8 +319,17 @@ export const Template2: React.FC<Props> = props => {
             color={theme.color}
           >
             <div className="section section-project">
-              {_.map(projectList, (project, idx) =>
-                project ? (
+              {_.map(projectList, (project, idx) => {
+                const project_contents = project
+                  ? project.project_content_list.map((item, idx) => {
+                      return (
+                        <li key={idx} className="markdown-item">
+                          <ReactMarkdown>{item}</ReactMarkdown>
+                        </li>
+                      );
+                    })
+                  : null;
+                return project ? (
                   <div className="section-item" key={idx.toString()}>
                     <div className="section-info">
                       <b className="info-name">
@@ -321,26 +339,44 @@ export const Template2: React.FC<Props> = props => {
                         </span>
                       </b>
                       {project.project_role && (
-                        <Tag color={theme.tagColor}>{project.project_role}</Tag>
+                        <div style={{ color: 'black', fontSize: '12px' }}>
+                          {/* <Tag color={theme.tagColor}>{project.project_role}</Tag> */}
+                          <strong>{project.project_role}</strong>
+                        </div>
                       )}
                     </div>
                     <div className="section-detail">
                       <span>
-                        <FormattedMessage id="项目描述" />：
+                        <b>项目描述：</b>
                       </span>
-                      <span>{project.project_desc}</span>
+                      <span className="markdown-item">
+                        <ReactMarkdown>{project.project_desc}</ReactMarkdown>
+                      </span>
+                      <span style={{ display: 'block' }}>
+                        项目技术栈:{' '}
+                        <strong>{project.project_technology_stack}</strong>
+                      </span>
                     </div>
+
                     <div className="section-detail">
                       <span>
-                        <FormattedMessage id="主要工作" />：
+                        <b>核心功能：</b>
                       </span>
-                      <span className="project-content">
-                        {project.project_content}
-                      </span>
+                      <ul
+                        className="md-ul"
+                        style={{
+                          marginTop: '5px',
+                          padding: '0px',
+                          paddingLeft: '14px',
+                        }}
+                      >
+                        {project_contents}
+                      </ul>
+                      {/* </div> */}
                     </div>
                   </div>
-                ) : null
-              )}
+                ) : null;
+              })}
             </div>
           </Wrapper>
         ) : null}
@@ -382,9 +418,8 @@ export const Template2: React.FC<Props> = props => {
                 return skills ? (
                   <li>
                     <div className="skill-item" key={idx.toString()}>
-                      <span>
-                        {/* <b>{skill.skill_name}：</b> */}
-                        {skills}
+                      <span className="markdown-item">
+                        <ReactMarkdown>{skills}</ReactMarkdown>
                       </span>
                     </div>
                   </li>

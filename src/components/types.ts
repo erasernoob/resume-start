@@ -76,6 +76,8 @@ export type ResumeConfig = {
     project_time?: string;
     // 项目内容列表
     project_content_list?: Array<string>;
+    // 项目技术栈
+    project_technology_stack?: string;
   }>;
 
   /** 个人技能 */

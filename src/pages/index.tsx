@@ -12,7 +12,7 @@ import './index.less';
 registerLocale('en-US', EN_US_LOCALE);
 
 const Page = () => {
-  const [title, changeTitle] = useState('Resume Generator');
+  const [title, changeTitle] = useState('Resume');
   useEffect(() => {
     const search = typeof window !== 'undefined' && window.location.search;
     const query = qs.parse(search);
